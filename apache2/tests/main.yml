@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - apache2-roles
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                                                                                                                                            
+~                                                            

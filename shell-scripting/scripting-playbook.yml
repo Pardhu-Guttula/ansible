@@ -1,0 +1,45 @@
+---
+- name: Executing shell scripting
+  hosts: all
+  become: true
+  tasks:
+    - name: copying file from host
+      copy:
+        src: /home/ubuntu/ansible/demo.txt
+        dest: /home/ubuntu
+
+    - name: copying scripting
+      copy:
+        src: /home/ubuntu/ansible/script.sh
+        dest: /home/ubuntu
+        mode: +x
+
+    # - name: Wait for file copy completion
+    #   wait_for:
+    #     path: /home/ubuntu/demo.txt
+
+    - name: Check if demo.txt exists
+      stat:
+        path: /home/ubuntu/demo.txt
+      register: demo_stat
+
+    - name: Debug information
+      debug:
+        var: demo_stat.stat.exists
+
+    # - name: run the scripting
+    #   command: /home/ubuntu/script.sh
+    #   args:
+    #     chdir: /home/ubuntu  # Change to the directory where the script is located
+
+    - name: Run the script and capture the output
+      command: /home/ubuntu/script.sh
+      args:
+        chdir: /home/ubuntu  # Change to the directory where the script is located
+      register: script_output
+
+    - name: View script output
+      debug:
+        var: script_output.stdout_lines
+
+    

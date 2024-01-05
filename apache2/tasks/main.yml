@@ -1,0 +1,20 @@
+---
+- name: Install apache
+  apt:
+    name: apache2
+    state: present
+
+- name: Copy files from file to apache2
+  copy:
+    src: files/index.html
+    dest: /var/www/html/index.html
+
+
+# Create folder in node machine
+- name: Create a folder
+  file:                               # if file --> dir has to be given
+    path: /var/www/html/second
+    state: directory                  # state of second
+    owner: ubuntu
+    group: your_group                 # Replace with the desired group
+    mode: '0755'                      # RWE -> User ||  RE -> group and others    --> owner permissions
